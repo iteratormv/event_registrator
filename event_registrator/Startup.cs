@@ -22,15 +22,16 @@ namespace event_registrator
         public void ConfigureServices(IServiceCollection services)
         {
             var connection = Configuration.GetConnectionString("EventDBConnection");
-            services.AddDbContext<UserRoleContext>
+            services.AddDbContext<EventContext>
                 (options => options.UseSqlServer(connection));
             
             services.AddControllersWithViews()
-                .AddJsonOptions(o=>
-                {
-                    o.JsonSerializerOptions.PropertyNamingPolicy = null;
-                    o.JsonSerializerOptions.DictionaryKeyPolicy = null;
-                });
+            //    .AddJsonOptions(o=>
+            //    {
+            //        o.JsonSerializerOptions.PropertyNamingPolicy = null;
+            //        o.JsonSerializerOptions.DictionaryKeyPolicy = null;
+            //    })
+            ;
             // In production, the Angular files will be served from this directory
             services.AddSpaStaticFiles(configuration =>
             {

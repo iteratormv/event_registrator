@@ -12,48 +12,48 @@ namespace event_registrator.Controllers.Api
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class UserRolesController : ControllerBase
+    public class UsersController : ControllerBase
     {
         private readonly EventContext _context;
 
-        public UserRolesController(EventContext context)
+        public UsersController(EventContext context)
         {
             _context = context;
         }
 
-        // GET: api/UserRoles
+        // GET: api/Users
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<UserRole>>> GetuserRoles()
+        public async Task<ActionResult<IEnumerable<User>>> Getusers()
         {
-            return await _context.userRoles.ToListAsync();
+            return await _context.users.ToListAsync();
         }
 
-        // GET: api/UserRoles/5
+        // GET: api/Users/5
         [HttpGet("{id}")]
-        public async Task<ActionResult<UserRole>> GetUserRole(int id)
+        public async Task<ActionResult<User>> GetUser(int id)
         {
-            var userRole = await _context.userRoles.FindAsync(id);
+            var user = await _context.users.FindAsync(id);
 
-            if (userRole == null)
+            if (user == null)
             {
                 return NotFound();
             }
 
-            return userRole;
+            return user;
         }
 
-        // PUT: api/UserRoles/5
+        // PUT: api/Users/5
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for
         // more details see https://aka.ms/RazorPagesCRUD.
         [HttpPut("{id}")]
-        public async Task<IActionResult> PutUserRole(int id, UserRole userRole)
+        public async Task<IActionResult> PutUser(int id, User user)
         {
-            if (id != userRole.RoleId)
+            if (id != user.UserId)
             {
                 return BadRequest();
             }
 
-            _context.Entry(userRole).State = EntityState.Modified;
+            _context.Entry(user).State = EntityState.Modified;
 
             try
             {
@@ -61,7 +61,7 @@ namespace event_registrator.Controllers.Api
             }
             catch (DbUpdateConcurrencyException)
             {
-                if (!UserRoleExists(id))
+                if (!UserExists(id))
                 {
                     return NotFound();
                 }
@@ -74,37 +74,37 @@ namespace event_registrator.Controllers.Api
             return NoContent();
         }
 
-        // POST: api/UserRoles
+        // POST: api/Users
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for
         // more details see https://aka.ms/RazorPagesCRUD.
         [HttpPost]
-        public async Task<ActionResult<UserRole>> PostUserRole(UserRole userRole)
+        public async Task<ActionResult<User>> PostUser(User user)
         {
-            _context.userRoles.Add(userRole);
+            _context.users.Add(user);
             await _context.SaveChangesAsync();
 
-            return CreatedAtAction("GetUserRole", new { id = userRole.RoleId }, userRole);
+            return CreatedAtAction("GetUser", new { id = user.UserId }, user);
         }
 
-        // DELETE: api/UserRoles/5
+        // DELETE: api/Users/5
         [HttpDelete("{id}")]
-        public async Task<ActionResult<UserRole>> DeleteUserRole(int id)
+        public async Task<ActionResult<User>> DeleteUser(int id)
         {
-            var userRole = await _context.userRoles.FindAsync(id);
-            if (userRole == null)
+            var user = await _context.users.FindAsync(id);
+            if (user == null)
             {
                 return NotFound();
             }
 
-            _context.userRoles.Remove(userRole);
+            _context.users.Remove(user);
             await _context.SaveChangesAsync();
 
-            return userRole;
+            return user;
         }
 
-        private bool UserRoleExists(int id)
+        private bool UserExists(int id)
         {
-            return _context.userRoles.Any(e => e.RoleId == id);
+            return _context.users.Any(e => e.UserId == id);
         }
     }
 }

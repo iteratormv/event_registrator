@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace event_registrator.Models
 {
-    public class Ivent
+    public class Event
     {
         [Key]
         public int IventId { get; set; }

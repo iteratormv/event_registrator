@@ -7,12 +7,14 @@ using System.Threading.Tasks;
 
 namespace event_registrator.Data
 {
-    public class UserRoleContext:DbContext
+    public class EventContext:DbContext
     {
-        public UserRoleContext(DbContextOptions options):base(options)
+        public EventContext(DbContextOptions options):base(options)
         {
             Database.EnsureCreated();
         }
+        public DbSet<User> users { get; set; }
+        public DbSet<Event> events { get; set; }
         public DbSet<UserRole> userRoles { get; set; }
     }
 }
