@@ -13,6 +13,6 @@ namespace event_registrator.Models
         public int UserId { get; set; }
         [Required]
         [Column(TypeName ="nvarchar(100)")]
-        public string Username { get; set; }
+        public string UserEmail { get; set; }
     }
 }
