@@ -10,6 +10,7 @@ import { HomeComponent } from './home/home.component';
 import { CounterComponent } from './counter/counter.component';
 import { FetchDataComponent } from './fetch-data/fetch-data.component';
 import { RegitrateformComponent } from './regitrateform/regitrateform.component';
+import { EndregistrateComponent } from './regitrateform/endregistrate/endregistrate.component';
 
 @NgModule({
   declarations: [
@@ -18,7 +19,8 @@ import { RegitrateformComponent } from './regitrateform/regitrateform.component'
     HomeComponent,
     CounterComponent,
     FetchDataComponent,
-    RegitrateformComponent
+    RegitrateformComponent,
+    EndregistrateComponent
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),
@@ -30,6 +32,7 @@ import { RegitrateformComponent } from './regitrateform/regitrateform.component'
       { path: 'counter', component: CounterComponent },
       { path: 'fetch-data', component: FetchDataComponent },
       { path: 'regitrateform', component: RegitrateformComponent },
+      { path: 'endregistrate', component: EndregistrateComponent },
     ])
   ],
   providers: [],

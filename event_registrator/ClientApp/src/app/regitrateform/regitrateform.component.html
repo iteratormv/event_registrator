@@ -11,12 +11,20 @@
                         <div class="form-group">
                             <label for="userEmail">E-Mail</label>
                             <input 
-                                    id="userEmail" 
-                                    name="userEmail" 
+ 
                                     type="email"
                                     class="form-control"
                                     formControlName = "userEmail"
                                     placeholder="Enter Email">
+                                    <div *ngIf="registrationForm.get('userEmail').hasError('required') 
+                                                && registrationForm.get('userEmail').touched"
+                                          class="alert alert-danger" >Обязательное поле</div>
+                                    <div *ngIf="registrationForm.get('userEmail').hasError('email') 
+                                                && registrationForm.get('userEmail').touched"
+                                          class="alert alert-danger" >Не соответствие формату email</div>
+                                    <div *ngIf="registrationForm.get('userEmail').hasError('emailAddedValidator') 
+                                                && registrationForm.get('userEmail').touched"
+                                          class="alert alert-danger" >Такой email уже зарегистрирован</div>
                         </div>
                         <div class="form-group">
                             <label for="userPassword">Password</label>
@@ -27,6 +35,9 @@
                                     class="form-control"
                                     formControlName = "userPassword"
                                     placeholder="Enter password">
+                                    <div *ngIf="registrationForm.get('userPassword').hasError('required') 
+                                               && registrationForm.get('userPassword').touched"
+                                          class="alert alert-danger" >Обязательное поле</div>
                         </div>
                         <div class="form-group">
                             <label for="userPassword">Confirm password</label>
@@ -36,7 +47,14 @@
                                     type="password" 
                                     class="form-control"
                                     formControlName = "confirmUserPassword"
-                                    placeholder="Confirm password">
+                                    placeholder="Confirm password"
+                                    >
+                                    <div *ngIf="registrationForm.get('confirmUserPassword').hasError('required') 
+                                               && registrationForm.get('confirmUserPassword').touched"
+                                         class="alert alert-danger" >Обязательное поле</div>
+                                    <div *ngIf="registrationForm.get('confirmUserPassword').hasError('confirmPasswordValidator') 
+                                                && registrationForm.get('confirmUserPassword').touched"
+                                         class="alert alert-danger" >Пароли не совпадают</div>
                         </div>
                         <div class="text-center">
                             <button

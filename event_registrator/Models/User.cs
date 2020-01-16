@@ -14,5 +14,8 @@ namespace event_registrator.Models
         [Required]
         [Column(TypeName ="nvarchar(100)")]
         public string UserEmail { get; set; }
+        [Required]
+        [Column(TypeName = "nvarchar(100)")]
+        public string UserPassword { get; set; }
     }
 }
