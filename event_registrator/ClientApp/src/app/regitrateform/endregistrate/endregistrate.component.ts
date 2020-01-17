@@ -1,4 +1,4 @@
-import { Component, OnInit, Inject } from '@angular/core';
+import { Component, OnInit, Inject, Input } from '@angular/core';
 import { UsersService } from 'src/app/services/users.service';
 import { Router } from '@angular/router';
 import { useAnimation } from '@angular/animations';
@@ -9,12 +9,20 @@ import { delay } from 'rxjs/operators';
   templateUrl: './endregistrate.component.html',
   styleUrls: ['./endregistrate.component.css']
 })
+
+
+
+
 export class EndregistrateComponent implements OnInit {
 
+  
   canredirect:boolean;
   us:UsersService;
+  @Input() userName: string;
 
   constructor(private UserService:UsersService, private router: Router, @Inject('BASE_URL') baseUrl: string ){
+    console.log("endreg  -");
+ //   console.log(this.userName);
      this.canredirect = false; 
      this.us = UserService;
      setInterval(()=>{
@@ -35,6 +43,7 @@ export class EndregistrateComponent implements OnInit {
             uss.forEach(item=>{
               if(item.userEmail == this.us.currentUser){
                 this.us.currentConfirmedUser = this.us.currentUser;
+                console.log("endregistrate " + this.us.currentConfirmedUser)
                 this.canredirect = true;
                 throw BreakException;
               }

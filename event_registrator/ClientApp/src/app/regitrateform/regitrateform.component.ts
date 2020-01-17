@@ -171,8 +171,9 @@ export class RegitrateformComponent implements OnInit {
       this.isSubmitted = true;
       if(this.isSubmitted==true){
   //      alert("отсылаю письмо");
-//        console.log("send mail" + this.registrationForm.value.userEmail+'|'+this.registrationForm.value.userPassword)
-        this.us.sendmail(this.registrationForm.value.userEmail+'|'+this.registrationForm.value.userPassword);
+        console.log("send mail" + this.registrationForm.value.userEmail+'|'+this.registrationForm.value.userPassword)
+//        this.us.sendmail(this.registrationForm.value.userEmail+'|'+this.registrationForm.value.userPassword);
+        this.us.sendmailpost(this.registrationForm.value.userEmail, this.registrationForm.value.userPassword);
         this.us.currentUser = this.registrationForm.value.userEmail;
         this.router.navigate(['endregistrate']);
       }

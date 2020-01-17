@@ -1,4 +1,4 @@
-import { Injectable, OnInit } from '@angular/core';
+import { Injectable, OnInit, Input, OnChanges } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Inject } from '@angular/core';
 import { getBaseUrl } from 'src/main';
@@ -9,18 +9,27 @@ import { map } from 'rxjs/operators';
   providedIn: 'root'
 })
 
-export class UsersService implements OnInit {
+export class UsersService implements OnInit, OnChanges   {
+
+  ngOnChanges(changes: import("@angular/core").SimpleChanges): void {
+    console.log("sevice ngonchanged");
+ //   this.userName = this.currentUser;
+ console.log(changes);
+
+  }
   public users:any;
   public isa:booleanReturn;
   currentUser: string;
-  currentConfirmedUser:string
+  public currentConfirmedUser:string
+  @Input() userName: string;
 
   ngOnInit() {
+    console.log("service on init")
   }
-
   constructor(private http: HttpClient, @Inject('BASE_URL') baseUrl: string)
    { 
-//    console.log("start constructor service");
+    console.log("start constructor service");
+    console.log(this.userName);
     var burl = getBaseUrl();
     this.http.get(burl + 'api/users').subscribe((data) =>
      {
@@ -94,7 +103,24 @@ export class UsersService implements OnInit {
     }, error => console.error(error));
      return r;
   }
+  public sendmailpost(dataue:string, dataup:string) : string{
+    var burl = getBaseUrl();
+    const body = {userEmail: dataue, userPassword: dataup};
+    console.log(burl + 'api/sendmail')
+    console.log('http://localhost:50892/api/SendMaiL')
+    this.http.post(burl + 'api/sendmail', body).subscribe(
+      () => {},
+      error => console.log(error)
+  );; 
 
+
+
+
+ //   this.http.get(burl + 'api/sendmail/' + datau).subscribe(result => {
+ //     r = result.toString();
+ //   }, error => console.error(error));
+     return "ok";
+  }
   async initUsers():Promise<boolean>
   { 
    var burl = getBaseUrl();
@@ -106,7 +132,6 @@ export class UsersService implements OnInit {
      else return false;
   }
 }
-
 export interface booleanReturn{
   retData: boolean;
 }
