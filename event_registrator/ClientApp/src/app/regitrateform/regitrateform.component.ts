@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnChanges } from '@angular/core';
 import { FormGroup, FormControl, Validators, ValidatorFn, AbstractControl } from '@angular/forms';
 import { UsersService, booleanReturn } from '../services/users.service';
 import { Router } from '@angular/router';
@@ -13,7 +13,14 @@ import { promise } from 'protractor';
   styleUrls: ['./regitrateform.component.css']
 })
 
-export class RegitrateformComponent implements OnInit {
+export class RegitrateformComponent implements OnInit, OnChanges {
+
+
+  ngOnChanges(changes: import("@angular/core").SimpleChanges): void {
+    this.users = this.UserService.getUsers();
+  }
+
+  
   [x: string]: any;
 
   registrationForm:FormGroup;
@@ -49,6 +56,7 @@ export class RegitrateformComponent implements OnInit {
      this.us = UserService;
 //     console.log("constroctor form - " + this.users);
      this.isSubmitted = false; 
+     this.users = this.UserService.getUsers();
     }
   ngOnInit() {
     this.registrationForm = new FormGroup({
@@ -64,6 +72,7 @@ export class RegitrateformComponent implements OnInit {
         this.confirmPasswordValidator()
         ])
       });
+      
   }
 
   onValueChange(data?:any){

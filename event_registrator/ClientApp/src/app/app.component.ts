@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnChanges, OnInit, DoCheck } from '@angular/core';
 import { UsersService } from './services/users.service';
 
 
@@ -7,18 +7,51 @@ import { UsersService } from './services/users.service';
   templateUrl: './app.component.html',
   providers:[UsersService]
 })
-export class AppComponent {
+export class AppComponent implements OnChanges, OnInit, DoCheck {
+  ngDoCheck(): void {
+    console.log("docheck");
+    this.userName = this.us.getCurrentConfermedUser();
+    console.log(this.userName);
+  }
+  ngOnInit(): void {
+
+    console.log("app oninit");
+    console.log(this.UserService.getCurrentConfermedUser());
+//    setInterval(this.MonitorUser, 1000);
+  }
+  ngOnChanges(changes: import("@angular/core").SimpleChanges): void {
+    console.log("app oninit");
+    console.log(this.UserService.getCurrentConfermedUser());
+//    setInterval(this.MonitorUser, 1000);
+
+  }
   title = 'app';
   userName:string;
   userRole:string;
-  us:UsersService;
-  constructor(){
+  public us:UsersService;
+  constructor(private UserService:UsersService){
+    console.log("app constructor");
     this.userName = "guest";
     this.userRole = "guest";
+    this.us = UserService;
+    console.log(this.UserService.getCurrentConfermedUser());
+    console.log(this.us.getCurrentConfermedUser());
 //    var e = this.us.ngOnChanges;
  //   console.log(e.name);
+//setTimeout(setInterval(this.MonitorUser,1000),1000)
+// setTimeout(this.initUser,1000);
+
+
   }
-  initUser(){
-    this.userName = this.us.currentConfirmedUser;
+  initUser(u:UsersService){
+    this.userName = u.getCurrentConfermedUser();
+    console.log(this.userName);
+  }
+
+
+  
+  MonitorUser(){
+    
+    this.initUser(this.us);
   }
 }

@@ -20,8 +20,8 @@ export class UsersService implements OnInit, OnChanges   {
   public users:any;
   public isa:booleanReturn;
   currentUser: string;
-  public currentConfirmedUser:string
-  @Input() userName: string;
+  currentConfirmedUser:string
+//  @Input() userName: string;
 
   ngOnInit() {
     console.log("service on init")
@@ -29,7 +29,7 @@ export class UsersService implements OnInit, OnChanges   {
   constructor(private http: HttpClient, @Inject('BASE_URL') baseUrl: string)
    { 
     console.log("start constructor service");
-    console.log(this.userName);
+//    console.log(this.userName);
     var burl = getBaseUrl();
     this.http.get(burl + 'api/users').subscribe((data) =>
      {
@@ -41,6 +41,12 @@ export class UsersService implements OnInit, OnChanges   {
       this.currentConfirmedUser = "guest";
 //     console.log("end constructor service");
    }
+
+   public getCurrentConfermedUser(){
+     return this.currentConfirmedUser;
+   }
+
+
   public  getUsers():Array<any>{
 //    console.log("get users in service" + this.users);
 //   if(this.users!=null) {}

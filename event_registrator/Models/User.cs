@@ -11,8 +11,9 @@ namespace event_registrator.Models
     {
         [Key]
         public int UserId { get; set; }
+
         [Required]
-        [Column(TypeName ="nvarchar(100)")]
+        [Column(TypeName = "nvarchar(100)")]
         public string UserEmail { get; set; }
         [Required]
         [Column(TypeName = "nvarchar(100)")]
