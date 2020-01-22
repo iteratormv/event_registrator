@@ -15,6 +15,26 @@ namespace event_registrator.Data
         }
         public DbSet<User> users { get; set; }
         public DbSet<Event> events { get; set; }
-        public DbSet<UserRole> userRoles { get; set; }
+        public DbSet<Role> roles { get; set; }
+
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            modelBuilder.Entity<User>().HasData(
+                new User[]
+                {
+                new User { Id = 1, firstName = "admin", surName = "admin",
+                    Password = "admin", Email = "admin@admin" }
+                });
+            modelBuilder.Entity<Role>().HasData(
+                new Role[]
+                {
+                    new Role { Id = 1, Name = "superUser", canSendMail = true }
+                });
+            modelBuilder.Entity<UserInRole>().HasData(
+                new UserInRole[]
+                {
+                    new UserInRole{ Id = 1, userId = 1, roleId = 1 }
+                });
+        }
     }
 }

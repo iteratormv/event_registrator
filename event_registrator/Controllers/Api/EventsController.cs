@@ -48,7 +48,7 @@ namespace event_registrator.Controllers.Api
         [HttpPut("{id}")]
         public async Task<IActionResult> PutEvent(int id, Event @event)
         {
-            if (id != @event.IventId)
+            if (id != @event.Id)
             {
                 return BadRequest();
             }
@@ -83,7 +83,7 @@ namespace event_registrator.Controllers.Api
             _context.events.Add(@event);
             await _context.SaveChangesAsync();
 
-            return CreatedAtAction("GetEvent", new { id = @event.IventId }, @event);
+            return CreatedAtAction("GetEvent", new { id = @event.Id }, @event);
         }
 
         // DELETE: api/Events/5
@@ -104,7 +104,7 @@ namespace event_registrator.Controllers.Api
 
         private bool EventExists(int id)
         {
-            return _context.events.Any(e => e.IventId == id);
+            return _context.events.Any(e => e.Id == id);
         }
     }
 }

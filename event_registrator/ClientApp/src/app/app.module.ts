@@ -12,6 +12,8 @@ import { FetchDataComponent } from './fetch-data/fetch-data.component';
 import { RegitrateformComponent } from './regitrateform/regitrateform.component';
 import { EndregistrateComponent } from './regitrateform/endregistrate/endregistrate.component';
 import { LoginformComponent } from './loginform/loginform.component';
+import { AdministrationComponent } from './administration/administration.component';
+import { CabinetComponent } from './cabinet/cabinet.component';
 
 @NgModule({
   declarations: [
@@ -22,7 +24,9 @@ import { LoginformComponent } from './loginform/loginform.component';
     FetchDataComponent,
     RegitrateformComponent,
     EndregistrateComponent,
-    LoginformComponent
+    LoginformComponent,
+    AdministrationComponent,
+    CabinetComponent
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),
@@ -36,6 +40,8 @@ import { LoginformComponent } from './loginform/loginform.component';
       { path: 'regitrateform', component: RegitrateformComponent },
       { path: 'endregistrate', component: EndregistrateComponent },
       { path: 'loginform', component: LoginformComponent },
+      { path: 'administration', component: AdministrationComponent },
+      { path: 'cabinet', component: CabinetComponent },
     ])
   ],
   providers: [],

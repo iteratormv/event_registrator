@@ -7,13 +7,17 @@ using System.Threading.Tasks;
 
 namespace event_registrator.Models
 {
-    public class UserRole
+    public class Role
     {
         [Key]
-        public int RoleId { get; set; }
+        public int Id { get; set; }
         [Required]
         [Column(TypeName ="nvarchar(100)")]
-        public string RoleName { get; set; }
+        public string Name { get; set; }
+        [Required]
+        public bool canSendMail { get; set; }
+
+        public virtual List<UserInRole> userInRoles { get; set; }
 
     }
 }

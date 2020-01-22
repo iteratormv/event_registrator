@@ -23,16 +23,16 @@ namespace event_registrator.Controllers.Api
 
         // GET: api/UserRoles
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<UserRole>>> GetuserRoles()
+        public async Task<ActionResult<IEnumerable<Role>>> GetuserRoles()
         {
-            return await _context.userRoles.ToListAsync();
+            return await _context.roles.ToListAsync();
         }
 
         // GET: api/UserRoles/5
         [HttpGet("{id}")]
-        public async Task<ActionResult<UserRole>> GetUserRole(int id)
+        public async Task<ActionResult<Role>> GetUserRole(int id)
         {
-            var userRole = await _context.userRoles.FindAsync(id);
+            var userRole = await _context.roles.FindAsync(id);
 
             if (userRole == null)
             {
@@ -46,9 +46,9 @@ namespace event_registrator.Controllers.Api
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for
         // more details see https://aka.ms/RazorPagesCRUD.
         [HttpPut("{id}")]
-        public async Task<IActionResult> PutUserRole(int id, UserRole userRole)
+        public async Task<IActionResult> PutUserRole(int id, Role userRole)
         {
-            if (id != userRole.RoleId)
+            if (id != userRole.Id)
             {
                 return BadRequest();
             }
@@ -78,25 +78,25 @@ namespace event_registrator.Controllers.Api
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for
         // more details see https://aka.ms/RazorPagesCRUD.
         [HttpPost]
-        public async Task<ActionResult<UserRole>> PostUserRole(UserRole userRole)
+        public async Task<ActionResult<Role>> PostUserRole(Role userRole)
         {
-            _context.userRoles.Add(userRole);
+            _context.roles.Add(userRole);
             await _context.SaveChangesAsync();
 
-            return CreatedAtAction("GetUserRole", new { id = userRole.RoleId }, userRole);
+            return CreatedAtAction("GetUserRole", new { id = userRole.Id }, userRole);
         }
 
         // DELETE: api/UserRoles/5
         [HttpDelete("{id}")]
-        public async Task<ActionResult<UserRole>> DeleteUserRole(int id)
+        public async Task<ActionResult<Role>> DeleteUserRole(int id)
         {
-            var userRole = await _context.userRoles.FindAsync(id);
+            var userRole = await _context.roles.FindAsync(id);
             if (userRole == null)
             {
                 return NotFound();
             }
 
-            _context.userRoles.Remove(userRole);
+            _context.roles.Remove(userRole);
             await _context.SaveChangesAsync();
 
             return userRole;
@@ -104,7 +104,7 @@ namespace event_registrator.Controllers.Api
 
         private bool UserRoleExists(int id)
         {
-            return _context.userRoles.Any(e => e.RoleId == id);
+            return _context.roles.Any(e => e.Id == id);
         }
     }
 }

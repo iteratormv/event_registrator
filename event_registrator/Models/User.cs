@@ -10,13 +10,21 @@ namespace event_registrator.Models
     public class User
     {
         [Key]
-        public int UserId { get; set; }
+        public int Id { get; set; }
+        [Required]
+        [Column(TypeName ="nvarchar(100)")]
+        public string firstName { get; set; }
+        [Required]
+        [Column(TypeName = "nvarchar(100)")]
+        public string surName { get; set; }
+        [Required]
+        [Column(TypeName = "nvarchar(100)")]
+        public string Email { get; set; }
+        [Required]
+        [Column(TypeName = "nvarchar(100)")]
+        public string Password { get; set; }
 
-        [Required]
-        [Column(TypeName = "nvarchar(100)")]
-        public string UserEmail { get; set; }
-        [Required]
-        [Column(TypeName = "nvarchar(100)")]
-        public string UserPassword { get; set; }
+        public virtual List<UserInRole> userInRoles { get; set; }
+
     }
 }

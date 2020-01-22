@@ -15,39 +15,54 @@ export class UsersService implements OnInit, OnChanges   {
     console.log("sevice ngonchanged");
  //   this.userName = this.currentUser;
  console.log(changes);
-
   }
+
+
   public users:any;
   public isa:booleanReturn;
   currentUser: string;
   currentConfirmedUser:string
+  roleCurrentConfermedUser:string;
 //  @Input() userName: string;
+
 
   ngOnInit() {
     console.log("service on init")
   }
   constructor(private http: HttpClient, @Inject('BASE_URL') baseUrl: string)
    { 
-    console.log("start constructor service");
-//    console.log(this.userName);
-    var burl = getBaseUrl();
-    this.http.get(burl + 'api/users').subscribe((data) =>
-     {
-       this.users=data;
- //      console.log("in subscribe users constructor service");
- //      console.log(data);
-      });
+
+
+
+
+ //   console.log("start constructor service");
+
+    this.initUsers();
+
+
+
+
+// //    console.log(this.userName);
+//     var burl = getBaseUrl();
+//     this.http.get(burl + 'api/users').subscribe((data) =>
+//      {
+//        this.users=data;
+//  //      console.log("in subscribe users constructor service");
+//  //      console.log(data);
+//       });
+
+
+
+
+
       this.currentUser = "guest";
       this.currentConfirmedUser = "guest";
 //     console.log("end constructor service");
    }
-
    public getCurrentConfermedUser(){
      return this.currentConfirmedUser;
    }
-
-
-  public  getUsers():Array<any>{
+  public  getUsers():Array<User>{
 //    console.log("get users in service" + this.users);
 //   if(this.users!=null) {}
 //    console.log(this.users)
@@ -109,11 +124,11 @@ export class UsersService implements OnInit, OnChanges   {
     }, error => console.error(error));
      return r;
   }
-  public sendmailpost(dataue:string, dataup:string) : string{
+  public sendmailpost(u:User) : string{
     var burl = getBaseUrl();
-    const body = {userEmail: dataue, userPassword: dataup};
-    console.log(burl + 'api/sendmail')
-    console.log('http://localhost:50892/api/SendMaiL')
+    const body = {"Email": u.email, "Password": u.password, "firstName":u.firstName, "surName":u.surName};
+//    console.log(burl + 'api/sendmail')
+//    console.log('http://localhost:50892/api/SendMaiL')
     this.http.post(burl + 'api/sendmail', body).subscribe(
       () => {},
       error => console.log(error)
@@ -138,7 +153,15 @@ export class UsersService implements OnInit, OnChanges   {
      else return false;
   }
 }
+
 export interface booleanReturn{
   retData: boolean;
 }
 
+export interface User{
+  id:number;
+  firstName:string;
+  surName:string;
+  email:string;
+  password:string;
+}

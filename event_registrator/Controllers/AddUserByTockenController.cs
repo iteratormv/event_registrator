@@ -51,18 +51,22 @@ namespace event_registrator.Controllers
             string[] userdata = id.Split('|');
             string usermail = userdata[0];
             string userpassword = userdata[1];
-            var canAdd = context.users.Where(s => s.UserEmail == usermail).Count() == 0;
+            string userFirstName = userdata[2];
+            string userSurName = userdata[3];
+            var canAdd = context.users.Where(s => s.Email == usermail).Count() == 0;
             if (canAdd)
             {
                 var query = context.users.Add(new User
                 {
-                    UserEmail = usermail,
-                    UserPassword = userpassword
+                    Email = usermail,
+                    Password = userpassword,
+                    firstName = userFirstName,
+                    surName = userSurName
                 });
             }
-            else return "Что-то пошло не так, пройдите регистрацию на сайте заново";
+            else return "Что-то пошло не так, если Ваша авторизация будет неуспешной, пройдите регистрацию на сайте заново";
             await context.SaveChangesAsync();
-            var result = context.users.Where(s => s.UserEmail == usermail).FirstOrDefault();
+            var result = context.users.Where(s => s.Email == usermail).FirstOrDefault();
 
 
 
@@ -80,7 +84,7 @@ namespace event_registrator.Controllers
             context.users.Add(user);
             await context.SaveChangesAsync();
 
-            return CreatedAtAction("GetUser", new { id = user.UserId }, user);
+            return CreatedAtAction("GetUser", new { id = user.Id }, user);
         }
 
 

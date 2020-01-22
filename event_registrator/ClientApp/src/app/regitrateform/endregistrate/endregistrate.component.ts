@@ -21,7 +21,7 @@ export class EndregistrateComponent implements OnInit {
   @Input() userName: string;
 
   constructor(private UserService:UsersService, private router: Router, @Inject('BASE_URL') baseUrl: string ){
-    console.log("endreg  -");
+  //  console.log("endreg  -");
  //   console.log(this.userName);
      this.canredirect = false; 
      this.us = UserService;
@@ -41,9 +41,11 @@ export class EndregistrateComponent implements OnInit {
         var BreakException = {};
         try{
             uss.forEach(item=>{
-              if(item.userEmail == this.us.currentUser){
-                this.us.currentConfirmedUser = this.us.currentUser;
-                console.log("endregistrate " + this.us.currentConfirmedUser)
+  //          console.log(item.email + " compare " + this.us.currentUser);
+              if(item.email == this.us.currentUser){
+   //             this.us.currentConfirmedUser = this.us.currentUser;
+                 this.us.currentConfirmedUser = item.firstName;
+  //              console.log("endregistrate " + this.us.currentConfirmedUser)
                 this.canredirect = true;
                 throw BreakException;
               }

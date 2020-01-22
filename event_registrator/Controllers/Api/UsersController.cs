@@ -19,6 +19,7 @@ namespace event_registrator.Controllers.Api
         public UsersController(EventContext context)
         {
             _context = context;
+            
         }
 
         // GET: api/Users
@@ -48,7 +49,7 @@ namespace event_registrator.Controllers.Api
         [HttpPut("{id}")]
         public async Task<IActionResult> PutUser(int id, User user)
         {
-            if (id != user.UserId)
+            if (id != user.Id)
             {
                 return BadRequest();
             }
@@ -83,7 +84,7 @@ namespace event_registrator.Controllers.Api
             _context.users.Add(user);
             await _context.SaveChangesAsync();
 
-            return CreatedAtAction("GetUser", new { id = user.UserId }, user);
+            return CreatedAtAction("GetUser", new { id = user.Id }, user);
         }
 
         // DELETE: api/Users/5
@@ -104,7 +105,7 @@ namespace event_registrator.Controllers.Api
 
         private bool UserExists(int id)
         {
-            return _context.users.Any(e => e.UserId == id);
+            return _context.users.Any(e => e.Id == id);
         }
     }
 }

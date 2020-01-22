@@ -1,6 +1,6 @@
 import { Component, OnInit, OnChanges } from '@angular/core';
 import { FormGroup, FormControl, Validators, ValidatorFn, AbstractControl } from '@angular/forms';
-import { UsersService, booleanReturn } from '../services/users.service';
+import { UsersService, booleanReturn, User } from '../services/users.service';
 import { Router } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
 import { Inject } from '@angular/core';
@@ -60,6 +60,8 @@ export class RegitrateformComponent implements OnInit, OnChanges {
     }
   ngOnInit() {
     this.registrationForm = new FormGroup({
+        userFirstName:new  FormControl('',Validators.required),
+        userSurName:new  FormControl('',Validators.required),
         userEmail: new FormControl('', 
         [
           Validators.required,
@@ -88,7 +90,7 @@ export class RegitrateformComponent implements OnInit, OnChanges {
     let dut:boolean;
     let us = this.us.getUsers();
     us.forEach(element => {
-      if(element.userEmail == controlValue) dut = true;
+      if(element.email == controlValue) dut = true;
       else dut = false;
     });
     if(dut==true) this.registrationForm.controls['userEmail']
@@ -105,7 +107,7 @@ export class RegitrateformComponent implements OnInit, OnChanges {
     if(us == null) return false;
     us.forEach(element => {
 //      console.log(element.userEmail + " checkEmail " + controlValue)
-      if(element.userEmail == controlValue) {
+      if(element.email == controlValue) {
         dut = true;
  //       console.log("checkEmail let " + dut)
       }
@@ -180,9 +182,23 @@ export class RegitrateformComponent implements OnInit, OnChanges {
       this.isSubmitted = true;
       if(this.isSubmitted==true){
   //      alert("отсылаю письмо");
-        console.log("send mail" + this.registrationForm.value.userEmail+'|'+this.registrationForm.value.userPassword)
+  //      console.log("send mail" + this.registrationForm.value.userEmail+'|'+this.registrationForm.value.userPassword)
+        let u:any = {"email": this.registrationForm.value.userEmail,
+                     "password":this.registrationForm.value.userPassword,
+                     "firstName":this.registrationForm.value.userFirstName,
+                     "surName":this.registrationForm.value.userSurName};
+  //      console.log("on submit userEmail = " + this.registrationForm.value.userEmail);
+        // u.email = this.registrationForm.value.userEmail.toString();
+
+ //        console.log(u);
+        // u.firstName = this.registrationForm.value.userFirstName;
+        // u.surName = this.registrationForm.value.userSurName;
+        // u.password = this.registrationForm.value.password;
+        // console.log(this.registrationForm.value.userEmail);
+  //      console.log(u);
+
 //        this.us.sendmail(this.registrationForm.value.userEmail+'|'+this.registrationForm.value.userPassword);
-        this.us.sendmailpost(this.registrationForm.value.userEmail, this.registrationForm.value.userPassword);
+        this.us.sendmailpost(u);
         this.us.currentUser = this.registrationForm.value.userEmail;
         this.router.navigate(['endregistrate']);
       }
