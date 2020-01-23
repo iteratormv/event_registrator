@@ -16,6 +16,8 @@ namespace event_registrator.Models
         public string Name { get; set; }
         [Required]
         public bool canSendMail { get; set; }
+        [Required]
+        public bool canAdministrate { get; set; }
 
         public virtual List<UserInRole> userInRoles { get; set; }
 

@@ -28,16 +28,17 @@ namespace event_registrator.Controllers
             string userSurName = userdata[3];
             string encriptlink = Encripter.Encrypt(id);
 
-            //            string host = "http://localhos:50892";
+                        string host = "http://localhos:50892";
+
             //              for debugin
             //var h = HttpContext.Request.Scheme;
             //var t = "192.168.0.66:50892";
             //var host = h + "://" + t;
             //              for production
 
-            var h = HttpContext.Request.Scheme;
-            var t = "193.93.186.170:35000";
-            var host = h + "://" + t;
+            //var h = HttpContext.Request.Scheme;
+            //var t = "193.93.186.170:35000";
+            //var host = h + "://" + t;
 
             MailAddress fromMailAddress = new MailAddress("registratoriterator@gmail.com", "event_registrator");
             MailAddress toMailAddress = new MailAddress(usermail);
@@ -75,7 +76,7 @@ namespace event_registrator.Controllers
             var t = "193.93.186.170:35000";
             var host = h + "://" + t;
 
-            //                var host = "http://localhost:50892";
+            //var host = "http://localhost:50892";
 
 
             MailAddress fromMailAddress = new MailAddress("registratoriterator@gmail.com", "event_registrator");

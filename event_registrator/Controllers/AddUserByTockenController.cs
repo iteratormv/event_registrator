@@ -63,10 +63,18 @@ namespace event_registrator.Controllers
                     firstName = userFirstName,
                     surName = userSurName
                 });
+                await context.SaveChangesAsync();
+                var uId = context.users.Where(u => u.Email == usermail).FirstOrDefault().Id;
+                var rId = context.roles.Where(r => r.Name == "user").FirstOrDefault().Id;
+                context.userInRoles.Add(new UserInRole
+                {
+                    userId = uId,
+                    roleId = rId
+                });
+                context.SaveChanges();
             }
             else return "Что-то пошло не так, если Ваша авторизация будет неуспешной, пройдите регистрацию на сайте заново";
-            await context.SaveChangesAsync();
-            var result = context.users.Where(s => s.Email == usermail).FirstOrDefault();
+        //    var result = context.users.Where(s => s.Email == usermail).FirstOrDefault();
 
 
 
