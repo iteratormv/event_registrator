@@ -13,7 +13,7 @@
             class="nav-link text-dark"
             >User - {{userName}}</span>
           </li>
-          <li *ngIf="isLogin" class="nav-item" [routerLinkActive]="['link-active']" >
+          <li *ngIf="canAdministrate" class="nav-item" [routerLinkActive]="['link-active']" >
             <a class="nav-link text-dark" [routerLink]="['/administration']">Administration</a>
           </li>
           <li *ngIf="!isLogin" class="nav-item" [routerLinkActive]="['link-active']" >

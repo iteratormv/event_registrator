@@ -36,6 +36,7 @@ export class EndregistrateComponent implements OnInit {
   }
   async MonitoringCanRedirect(){
         var qq = await this.us.initUsers();
+        console.log(this.us.roleCurrentConfermedUser)
        setTimeout(()=>{
         var uss = this.gu();
         var BreakException = {};
@@ -45,6 +46,10 @@ export class EndregistrateComponent implements OnInit {
               if(item.email == this.us.currentUser){
    //             this.us.currentConfirmedUser = this.us.currentUser;
                  this.us.currentConfirmedUser = item.firstName;
+                 this.us.currentConfirmedUserObject = item;
+                 console.log("end registrate monitor canredirect")
+                 console.log(item);
+  //               this.us.initRoleByUser(item);
   //              console.log("endregistrate " + this.us.currentConfirmedUser)
                 this.canredirect = true;
                 throw BreakException;

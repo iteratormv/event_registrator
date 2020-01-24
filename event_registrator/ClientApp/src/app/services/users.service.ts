@@ -19,10 +19,17 @@ export class UsersService implements OnInit, OnChanges   {
 
 
   public users:any;
+  public roles:any;
+  public userInRoles:any;
   public isa:booleanReturn;
+
   currentUser: string;
   currentConfirmedUser:string
   roleCurrentConfermedUser:string;
+
+  public currentConfirmedUserObject:User;
+
+
 //  @Input() userName: string;
 
 
@@ -57,9 +64,37 @@ export class UsersService implements OnInit, OnChanges   {
 
       this.currentUser = "guest";
       this.currentConfirmedUser = "guest";
-//     console.log("end constructor service");
+      this.roleCurrentConfermedUser = "guest";
+
+
+
+
+
+
+
+
+     console.log("end constructor service");
+     console.log(this.currentConfirmedUserObject);
    }
-   public getCurrentConfermedUser(){
+
+   public getRoleCurrentConfirmedUser():string{
+     return this.roleCurrentConfermedUser;
+
+   }
+
+
+   public getCurrentConfermedUser():string{
+     console.log("service getcurrent confermeduser")
+    this.getUserObjectByName(this.currentConfirmedUser);
+     console.log(this.currentConfirmedUserObject);
+     if(this.currentConfirmedUserObject!=null) {
+      this.initRoleByUser(this.currentConfirmedUserObject);
+     }
+
+  
+
+   //  this.roleCurrentConfermedUser = this.initRoleByUser(this.currentConfirmedUserObject).Name;
+    // console.log(this.roleCurrentConfermedUser);
      return this.currentConfirmedUser;
    }
   public  getUsers():Array<User>{
@@ -68,6 +103,14 @@ export class UsersService implements OnInit, OnChanges   {
 //    console.log(this.users)
     return this.users;
   }
+  public getRoles():Array<Role>{
+    return this.roles;
+  }
+
+  public getUserInRoles():Array<UserInRole>{
+    return this.userInRoles;
+  }
+
   public getIsa():booleanReturn{
     if(this.isa!=null)
  //    console.log(" get isa = " + this.isa.retData)
@@ -145,14 +188,66 @@ export class UsersService implements OnInit, OnChanges   {
   async initUsers():Promise<boolean>
   { 
    var burl = getBaseUrl();
-   var q = await this.http.get(burl + 'api/users').subscribe((data) =>
-    {
-      this.users=data;
-     });
+   var q = await this.http.get(burl + 'api/users').subscribe((data) =>{
+    this.users=data;
+    console.log(this.users);
+   });
+   var qr = await this.http.get(burl + 'api/roles').subscribe((data)=>{
+     this.roles = data;
+     console.log(this.roles);
+   });
+   var quir = await this.http.get(burl + 'api/userinroles').subscribe((data)=>{
+     this.userInRoles = data;
+     console.log(this.userInRoles);
+   });
+   console.log("initusers");
+   console.log(q);
+   console.log(qr);
+   console.log(quir);
+
      if(q) return true;
      else return false;
   }
+
+  getUserObjectByName(username:string):Promise<User>{
+    let us = this.getUsers();
+    if(us==null) return null;
+    us.forEach(u=>{
+      if(u.firstName == username) return u;
+    })
+    return null;
+  }
+
+  async initRoleByUser(u:User):Promise<Role>{
+    console.log("initrole start");
+    console.log(u)
+    let rs = this.getRoles();
+    console.log(rs);
+    let uirs = this.getUserInRoles();
+    console.log(uirs);
+    if(uirs==null) return null;
+    uirs.forEach(uir=>{
+      console.log(uir.userId + " compare " + u.id);
+      if(uir.userId == u.id){
+        if(rs==null) return null;
+        rs.forEach(r=>{
+          console.log(r.id + " compare " + uir.roleId);
+          if(r.id == uir.roleId) {
+            console.log("initrolebyuser return role")
+            console.log(r);
+            this.roleCurrentConfermedUser = r.name;
+            console.log(this.roleCurrentConfermedUser)
+            return r;
+          }
+        })
+      }
+    });
+    return null;
+  }
 }
+
+
+
 
 export interface booleanReturn{
   retData: boolean;
@@ -164,4 +259,17 @@ export interface User{
   surName:string;
   email:string;
   password:string;
+}
+
+export interface Role{
+  id:number;
+  name:string;
+  canSendMail:boolean;
+  canAdministrate:boolean;
+}
+
+export interface UserInRole{
+  id:number;
+  userId:number;
+  roleId:number;
 }

@@ -35,7 +35,8 @@ export class LoginformComponent implements OnInit, OnChanges {
       if(user.email == this.loginForm.controls['userEmail'].value){
         if(user.password == this.loginForm.controls['userPassword'].value){
           this.UserService.currentUser = user.firstName;
-          this.UserService.currentConfirmedUser = user.firstName + " " + user.surName;
+          this.UserService.currentConfirmedUser = user.firstName;
+          this.UserService.currentConfirmedUserObject = user;
 //          this.UserService.roleCurrentConfermedUser = user.
           result = true;
         }

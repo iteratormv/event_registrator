@@ -11,7 +11,10 @@ export class NavMenuComponent implements OnChanges  {
    // console.log("onChanges");
    // console.log("nav onchange userName = " + this.userName); 
    // console.log("nav onchange before islogin - " + this.isLogin);
-    if(this.userName!="guest") this.isLogin = true;
+    if(this.userRole!="guest") this.isLogin = true;
+    else this.isLogin = false;
+    if(this.userRole!="superUser") this.canAdministrate = false;
+    else this.canAdministrate = true;
     
    // console.log("nav onchange after islogin - " + this.isLogin);
   }
@@ -19,6 +22,7 @@ export class NavMenuComponent implements OnChanges  {
   isLogin = false;
   canAdministrate = false;
   @Input() userName: string;
+  @Input() userRole: string;
 
   constructor(){
     // if(this.userName!="guest") this.isLogin == true;
