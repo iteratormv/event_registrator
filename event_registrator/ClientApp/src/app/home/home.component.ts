@@ -10,16 +10,16 @@ export class HomeComponent implements OnChanges {
   isLogin:boolean;
   
   ngOnChanges(changes: import("@angular/core").SimpleChanges): void {
-    console.log("homeonchanges");
-    var cus = this.Userservice.getCurrentConfermedUser();
-    if(cus != "guest") this.isLogin = true;
+  //  console.log("homeonchanges");
+    var rcus = this.Userservice.getRoleCurrentConfirmedUser();
+    if(rcus != "guest") this.isLogin = true;
   }
 
   constructor(private Userservice:UsersService){
-    console.log("constructor home");
-    var cus = this.Userservice.getCurrentConfermedUser();
-    if(cus != "guest") this.isLogin = true;
-    console.log(cus);
+ //   console.log("constructor home");
+    var rcus = this.Userservice.getRoleCurrentConfirmedUser();
+    if(rcus != "guest") this.isLogin = true;
+ //   console.log(rcus);
   }
 
 

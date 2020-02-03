@@ -19,6 +19,9 @@
           <li *ngIf="!isLogin" class="nav-item" [routerLinkActive]="['link-active']" >
             <a class="nav-link text-dark" [routerLink]="['/loginform']">Login</a>
           </li>
+          <li *ngIf="isLogin" class="nav-item" [routerLinkActive]="['link-active']" >
+            <a class="nav-link text-dark" [routerLink]="['/cabinet']">Cabinet</a>
+          </li>
           <li class="nav-item" [routerLinkActive]="['link-active']" [routerLinkActiveOptions]="{ exact: true }">
             <a class="nav-link text-dark" [routerLink]="['/']">Home</a>
           </li>

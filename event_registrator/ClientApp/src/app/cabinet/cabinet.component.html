@@ -1,1 +1,12 @@
 <p>cabinet works!</p>
+<form asp-action="Post" enctype="multipart/form-data">
+<p *ngIf='canAdministrate && !canSendFile'><button (click)="SendFile()">
+        Рассылка штрихкодов из файла</button></p>
+<p *ngIf='!canSendFile'><button (click)='AcauntExit()'>
+        Выход из акаунта</button></p>
+<p *ngIf='canSendFile'>
+    <input type="file" (change)='onFileSelected($event)'>
+</p>
+<p *ngIf='canSendFile'><button (click)='onUpload()'>Upload</button></p>
+</form>
+<p *ngFor="let m of messages">{{m}}</p>

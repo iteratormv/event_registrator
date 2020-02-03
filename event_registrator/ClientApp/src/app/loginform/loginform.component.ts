@@ -31,7 +31,7 @@ export class LoginformComponent implements OnInit, OnChanges {
     let result:boolean = false;
     var users = this.UserService.getUsers();
     users.forEach(user=>{
-      console.log(user)
+ //     console.log(user)
       if(user.email == this.loginForm.controls['userEmail'].value){
         if(user.password == this.loginForm.controls['userPassword'].value){
           this.UserService.currentUser = user.firstName;

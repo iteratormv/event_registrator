@@ -9,11 +9,11 @@ import { UsersService } from './services/users.service';
 })
 export class AppComponent implements OnChanges, OnInit, DoCheck {
   ngDoCheck(): void {
-    console.log("docheck");
+ //   console.log("docheck");
     this.userName = this.us.getCurrentConfermedUser();   
-    console.log(this.userName);
+  //  console.log(this.userName);
     this.userRole = this.us.getRoleCurrentConfirmedUser();
-    console.log(this.userRole);
+   // console.log(this.userRole);
   }
   ngOnInit(): void {
 
@@ -22,9 +22,9 @@ export class AppComponent implements OnChanges, OnInit, DoCheck {
 //    setInterval(this.MonitorUser, 1000);
   }
   ngOnChanges(changes: import("@angular/core").SimpleChanges): void {
-    console.log("app oninit onchanges");
-    console.log(this.userName);
-    console.log(this.userRole);
+  //  console.log("app oninit onchanges");
+  //  console.log(this.userName);
+  //  console.log(this.userRole);
 //    console.log(this.UserService.getCurrentConfermedUser());
 //    setInterval(this.MonitorUser, 1000);
 

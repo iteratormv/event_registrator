@@ -26,17 +26,17 @@ export class NavMenuComponent implements OnChanges  {
 
   constructor(){
     // if(this.userName!="guest") this.isLogin == true;
- console.log("nav userName = " + this.userName); 
- console.log("nav islogin - " + this.isLogin);
+// console.log("nav userName = " + this.userName); 
+// console.log("nav islogin - " + this.isLogin);
   }
 
   collapse() {
     this.isExpanded = false;
-    console.log("collapse userName = " + this.userName); 
+//    console.log("collapse userName = " + this.userName); 
   }
 
   toggle() {
     this.isExpanded = !this.isExpanded;
-    console.log("toggle userName = " + this.userName); 
+ //   console.log("toggle userName = " + this.userName); 
   }
 }
