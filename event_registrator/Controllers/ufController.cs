@@ -39,6 +39,17 @@ namespace event_registrator.Controllers
 					var fns = formFile.FileName.Split('.');
 					var fn = fns[0];
 					var ras = fns[1];
+
+
+					string target1 = _appEnvironment.ContentRootPath + "//wwwroot//images";
+					if (!Directory.Exists(target1))
+					{
+						Directory.CreateDirectory(target1);
+					}
+
+
+
+
 					string target = _appEnvironment.ContentRootPath + "//wwwroot//TempFiles";
 					if (!Directory.Exists(target))
 					{

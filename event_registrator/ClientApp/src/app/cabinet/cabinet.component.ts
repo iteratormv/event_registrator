@@ -4,7 +4,7 @@ import { Router } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
 import { getBaseUrl } from 'src/main';
 import { HubConnection, HubConnectionBuilder } from "@aspnet/signalr"
-import { setTimeout } from 'timers';
+//import { setTimeout } from 'timers';
 
 @Component({
   selector: 'app-cabinet',
@@ -116,9 +116,13 @@ export class CabinetComponent implements OnInit, OnChanges {
     var burl = getBaseUrl();
     this.http.post(burl + 'uf', fd).subscribe(res=>{console.log(res);});
     this.message = this.selectedfile.name;
+
+
     setTimeout(()=>{
       this.echo();
-    }, 3000);
+    }, 6000);
+
+
  //   this.createWebSocketConnection();
  //   this.http.post('http://localhost:50892/api/uploadfile', fd).subscribe(res=>{console.log(res);});
   }

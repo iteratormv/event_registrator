@@ -72,11 +72,11 @@ namespace event_registrator.Controllers
             //string userpassword = user.Password;
 
 
-            //var h = HttpContext.Request.Scheme;
-            //var t = "193.93.186.170:35000";
-            //var host = h + "://" + t;
+            var h = HttpContext.Request.Scheme;
+            var t = "193.93.186.170:35000";
+            var host = h + "://" + t;
 
-            var host = "http://localhost:50892";
+  //          var host = "http://localhost:50892";
 
 
             MailAddress fromMailAddress = new MailAddress("registratoriterator@gmail.com", "event_registrator");
