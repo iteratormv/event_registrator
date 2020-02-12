@@ -17,12 +17,15 @@ namespace event_registrator.Models
         [Column(TypeName = "nvarchar(1000)")]
         public string Description { get; set; }
         [Column(TypeName = "nvarchar(100)")]
-        public DateTime imagePath { get; set; }
+        public string imagePath { get; set; }
         [Required]
-        [Column(TypeName = "nvarchar(50)")]
         public DateTime dateStart { get; set; }
         [Required]
-        [Column(TypeName = "nvarchar(50)")]
-        public string dateFinish { get; set; }
+        public DateTime dateFinish { get; set; }
+
+        public int ownerId { get; set; }
+        public virtual User User { get; set; }
+
+        public virtual List<Visitor> Visitors { get; set; }
     }
 }

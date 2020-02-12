@@ -18,6 +18,20 @@ namespace event_registrator.Models
         public bool canSendMail { get; set; }
         [Required]
         public bool canAdministrate { get; set; }
+        [Required]
+        public bool canDelete { get; set; }
+
+        public bool canCreateEvent { get; set; }
+
+        public bool canEditCategory { get; set; }
+        public bool canCreateCategory { get; set; }
+        public bool canDeleteCategory { get; set; }
+
+        public bool canEditPaymentStatus { get; set; }
+
+        public bool canEditRole { get; set; }
+        public bool canCreateRole { get; set; }
+        public bool canDeleteRole { get; set; }
 
         public virtual List<UserInRole> userInRoles { get; set; }
 

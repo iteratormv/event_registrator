@@ -61,11 +61,12 @@ namespace event_registrator.Controllers
                     Email = usermail,
                     Password = userpassword,
                     firstName = userFirstName,
-                    surName = userSurName
+                    surName = userSurName,
+                    canDelete = true
                 });
                 await context.SaveChangesAsync();
                 var uId = context.users.Where(u => u.Email == usermail).FirstOrDefault().Id;
-                var rId = context.roles.Where(r => r.Name == "user").FirstOrDefault().Id;
+                var rId = context.roles.Where(r => r.Name == "registredUser").FirstOrDefault().Id;
                 context.userInRoles.Add(new UserInRole
                 {
                     userId = uId,
@@ -74,7 +75,7 @@ namespace event_registrator.Controllers
                 context.SaveChanges();
             }
             else return "Что-то пошло не так, если Ваша авторизация будет неуспешной, пройдите регистрацию на сайте заново";
-        //    var result = context.users.Where(s => s.Email == usermail).FirstOrDefault();
+            //    var result = context.users.Where(s => s.Email == usermail).FirstOrDefault();
 
 
 

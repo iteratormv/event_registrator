@@ -23,8 +23,13 @@ namespace event_registrator.Models
         [Required]
         [Column(TypeName = "nvarchar(100)")]
         public string Password { get; set; }
+        public bool canDelete { get; set; }
+
 
         public virtual List<UserInRole> userInRoles { get; set; }
+        public virtual List<Status> Statuses { get; set; }
+        public virtual List<Event> Events { get; set; }
+//        public virtual List<Visitor> Visitors { get; set; }
 
     }
 }

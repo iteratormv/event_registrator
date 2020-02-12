@@ -95,7 +95,7 @@ namespace event_registrator.Websockets
 
             foreach (var item in users)
             {
-                MailAddress fromMailAddress = new MailAddress("registratortoevent@gmail.com", "event_registrator");
+                MailAddress fromMailAddress = new MailAddress("registratortoevent@gmail.com", "event-registrator");
                 MailAddress toMailAddress = new MailAddress(item.Email);
 
 
