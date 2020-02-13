@@ -1,0 +1,76 @@
+<p>createeventform works!</p>
+<section class="a">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-sm-2 col-lg-3 a1"></div>
+            <div class="col-sm-8 col-lg-6 a2">
+                <div id="divCreateEventForm" >
+                    <form >
+                        <div class="form-group">
+                            <label for="title">Title</label>
+                            <textarea 
+                                cols="60"
+                                rows="3"
+                                class="form-control" 
+                                placeholder="Enter Title"
+                                name = "title"
+                                ></textarea>
+                        </div>
+                        <div class="form-group">
+                            <label for="description">Description</label>
+                            <textarea 
+                                cols="60"
+                                rows="5"
+                                class="form-control"
+                                placeholder="Enter Description"
+                                name = "description"></textarea>
+                        </div>
+                        <div class="form-group">
+                            <label for="imagePath">Image</label>
+                            <input
+                               type="file" 
+                                class="form-control"
+                                id="imagePath"
+                                name = "imagePath"
+                                >
+                        </div>
+                        <div id="dateGroup">
+                            <div class="form-group" id="startdatediv">
+                                <label for="startDate">Start date</label>
+                                <input
+                                   type="date" 
+                                   id="startDate"
+                                   class="form-control"
+                                   name="startDate" 
+                                   value="2020-01-01" 
+                                   min="2020-01-01" 
+                                   max="2100-12-31">
+                            </div>
+                            <div class="form-group" id="finishdatediv">
+                                <label for="finishDate">Finish date</label>
+                                <input
+                                   type="date" 
+                                   id="finishDate"
+                                   class="form-control"
+                                   name="finishtDate" 
+                                   value="2020-01-01" 
+                                   min="2020-01-01" 
+                                   max="2100-12-31">
+                            </div>
+                        </div>
+                        <div class="text-center">
+                            <button 
+                               id="btncreatesubm" 
+                               type="submit" 
+                               class="btn btn-default">Отправить
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+            <div class="clearfix visible-sm-block visible-md-block"></div>
+            <div class="col-sm-2 col-lg-3 a3"></div>
+            <div class="clearfix visible-lg-block"></div>
+        </div>
+    </div>
+</section>

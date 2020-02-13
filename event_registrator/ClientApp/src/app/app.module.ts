@@ -14,6 +14,7 @@ import { EndregistrateComponent } from './regitrateform/endregistrate/endregistr
 import { LoginformComponent } from './loginform/loginform.component';
 import { AdministrationComponent } from './administration/administration.component';
 import { CabinetComponent } from './cabinet/cabinet.component';
+import { CreateeventformComponent } from './createeventform/createeventform.component';
 
 @NgModule({
   declarations: [
@@ -26,7 +27,8 @@ import { CabinetComponent } from './cabinet/cabinet.component';
     EndregistrateComponent,
     LoginformComponent,
     AdministrationComponent,
-    CabinetComponent
+    CabinetComponent,
+    CreateeventformComponent
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),
@@ -42,6 +44,7 @@ import { CabinetComponent } from './cabinet/cabinet.component';
       { path: 'loginform', component: LoginformComponent },
       { path: 'administration', component: AdministrationComponent },
       { path: 'cabinet', component: CabinetComponent },
+      { path: 'createeventform', component: CreateeventformComponent },
     ])
   ],
   providers: [],

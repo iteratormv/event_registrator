@@ -17,7 +17,6 @@ export class UsersService implements OnInit, OnChanges   {
  //console.log(changes);
   }
 
-
   public users:any;
   public roles:any;
   public userInRoles:any;
@@ -29,9 +28,7 @@ export class UsersService implements OnInit, OnChanges   {
 
   public currentConfirmedUserObject:User;
 
-
 //  @Input() userName: string;
-
 
   ngOnInit() {
   //  console.log("service on init")
@@ -92,7 +89,6 @@ export class UsersService implements OnInit, OnChanges   {
        if(data!=null)
         return this.isa;
       })
-
   }
   public isContainUser3(user:string): boolean {
       this.users.forEach(element => {
