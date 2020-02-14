@@ -1,6 +1,7 @@
 import { Component, OnChanges } from '@angular/core';
 import { UsersService } from '../services/users.service';
 import { Router } from '@angular/router';
+import { myEvent, EventserviceService } from '../services/eventservice.service';
 
 @Component({
   selector: 'app-home',
@@ -9,6 +10,7 @@ import { Router } from '@angular/router';
 export class HomeComponent implements OnChanges {
 
   isLogin:boolean;
+  events:Array<myEvent>;
   
   ngOnChanges(changes: import("@angular/core").SimpleChanges): void {
  //   console.log("homeonchanges");
@@ -17,8 +19,16 @@ export class HomeComponent implements OnChanges {
     if(rcus != "guest") this.isLogin = true;
   }
 
-  constructor(private Userservice:UsersService, private router: Router){
- //   console.log("constructor home");
+  constructor(
+    private Userservice:UsersService, 
+    private router: Router, 
+    private Eventservice:EventserviceService){
+    console.log("constructor home");
+    Eventservice.initEvents();
+    setTimeout(()=>{
+      this.events = Eventservice.getEvents();
+      console.log(this.events)
+    }, 100);
     setTimeout(()=>{
       var rcus = this.Userservice.getRoleCurrentConfirmedUser();
       if(rcus != "guest") this.isLogin = true;

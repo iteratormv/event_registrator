@@ -141,7 +141,7 @@ export class UsersService implements OnInit, OnChanges   {
    var qr = await this.http.get(burl + 'api/roles').subscribe((data)=>{
      this.roles = data;
  //    console.log(this.roles);
-   });
+   }); 
    var quir = await this.http.get(burl + 'api/userinroles').subscribe((data)=>{
      this.userInRoles = data;
    //  console.log(this.userInRoles);

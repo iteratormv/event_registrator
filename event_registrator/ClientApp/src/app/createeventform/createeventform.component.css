@@ -16,8 +16,11 @@
     
     input.ng-touched.ng-invalid {border:solid red 2px;}
     input.ng-touched.ng-valid {border:solid green 2px;}
+
+    textarea.ng-touched.ng-invalid {border:solid red 2px;}
+    textarea.ng-touched.ng-valid {border:solid green 2px;}
     
-    #btnregsubm{border:solid green 2px;}
+    #btncreatesubm{border:solid green 2px;}
 
     #ps{
         margin: 5%;
@@ -36,19 +39,24 @@
     }
 
     #dateGroup{
-        display: flex;
+        display: block;
+        width: auto;
 
     }
 
     #startdatediv{
-        width: 50%;
+        width: 100%;
         margin-right: 1%;
         text-align: center;
     }
 
     #finishdatediv{
-        width: 50%;
+        width: 100%;
         margin-left: 1%;
         text-align: center;
+    }
+
+    .form-control {
+        height: auto;
     }
 

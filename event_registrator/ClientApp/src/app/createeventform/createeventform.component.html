@@ -5,7 +5,10 @@
             <div class="col-sm-2 col-lg-3 a1"></div>
             <div class="col-sm-8 col-lg-6 a2">
                 <div id="divCreateEventForm" >
-                    <form >
+                    <form 
+                    [formGroup] = "createEventForm" 
+                    (ngSubmit)="onSubmit()"
+                    novalidate>
                         <div class="form-group">
                             <label for="title">Title</label>
                             <textarea 
@@ -14,6 +17,7 @@
                                 class="form-control" 
                                 placeholder="Enter Title"
                                 name = "title"
+                                formControlName = "title"
                                 ></textarea>
                         </div>
                         <div class="form-group">
@@ -23,36 +27,41 @@
                                 rows="5"
                                 class="form-control"
                                 placeholder="Enter Description"
-                                name = "description"></textarea>
+                                name= "description"
+                                formControlName= "description"
+                                ></textarea>
                         </div>
                         <div class="form-group">
-                            <label for="imagePath">Image</label>
+                            <label for="imagePath">Image (bmp, jpg, png, gif)</label>
                             <input
                                type="file" 
                                 class="form-control"
                                 id="imagePath"
-                                name = "imagePath"
-                                >
+                                name= "imagePath"
+                                formControlName= "imagePath"
+                                (change)='onFileSelected($event)'>
                         </div>
                         <div id="dateGroup">
                             <div class="form-group" id="startdatediv">
-                                <label for="startDate">Start date</label>
+                                <label for="dateStart">Date start</label>
                                 <input
                                    type="date" 
-                                   id="startDate"
+                                   id="dateStart"
                                    class="form-control"
-                                   name="startDate" 
+                                   name="dateStart" 
+                                   formControlName="dateStart"
                                    value="2020-01-01" 
                                    min="2020-01-01" 
                                    max="2100-12-31">
                             </div>
                             <div class="form-group" id="finishdatediv">
-                                <label for="finishDate">Finish date</label>
+                                <label for="dateFinish">Date finish</label>
                                 <input
                                    type="date" 
-                                   id="finishDate"
+                                   id="dateFinish"
                                    class="form-control"
-                                   name="finishtDate" 
+                                   name="dateFinish" 
+                                   formControlName="dateFinish" 
                                    value="2020-01-01" 
                                    min="2020-01-01" 
                                    max="2100-12-31">
@@ -62,6 +71,7 @@
                             <button 
                                id="btncreatesubm" 
                                type="submit" 
+                               [disabled]="!createEventForm.valid"
                                class="btn btn-default">Отправить
                             </button>
                         </div>

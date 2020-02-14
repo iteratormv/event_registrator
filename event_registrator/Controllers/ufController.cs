@@ -41,24 +41,26 @@ namespace event_registrator.Controllers
 					var ras = fns[1];
 
 
-					string target1 = _appEnvironment.ContentRootPath + "//wwwroot//images";
+					string target1 = _appEnvironment.ContentRootPath + @"\wwwroot\images";
 					if (!Directory.Exists(target1))
 					{
 						Directory.CreateDirectory(target1);
 					}
 
-
-
-
-					string target = _appEnvironment.ContentRootPath + "//wwwroot//TempFiles";
+					string target = _appEnvironment.ContentRootPath + @"\wwwroot\TempFiles";
 					if (!Directory.Exists(target))
 					{
 						Directory.CreateDirectory(target);
 					}
-					string file_path = Path.Combine(target, fn +  "." + ras);
+					string file_path = "";
+					if (ras == "jpg" || ras == "bmp" || ras == "png" || ras == "gif")
+						file_path = Path.Combine(target1, fn +  "." + ras);
+					else file_path = Path.Combine(target, fn + "." + ras);
 					string cur_file_path = "";
 					if (System.IO.File.Exists(file_path)) {
-						cur_file_path = Path.Combine(target, fn );
+						if(ras == "jpg" || ras == "bmp" || ras == "png" || ras == "gif")
+						   cur_file_path = Path.Combine(target1, fn );
+						else cur_file_path = Path.Combine(target, fn);
 						int count = 1;
 						while (true)
 						{

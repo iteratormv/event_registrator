@@ -102,9 +102,9 @@ export class CabinetComponent implements OnInit, OnChanges {
   }
 
   onFileSelected(event){
- //   console.log(event);
+    console.log(event);
     this.selectedfile = <File>event.target.files[0];
-//    console.log(this.selectedfile);
+    console.log(this.selectedfile);
   }
 
   onUpload(){
@@ -112,7 +112,7 @@ export class CabinetComponent implements OnInit, OnChanges {
 //    console.log(this.selectedfile);
    const fd = new FormData;
     fd.append('files', this.selectedfile, this.selectedfile.name)
-//    console.log(fd);
+    console.log(fd);
     var burl = getBaseUrl();
     this.http.post(burl + 'uf', fd).subscribe(res=>{console.log(res);});
     this.message = this.selectedfile.name;

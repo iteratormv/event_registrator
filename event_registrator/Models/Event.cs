@@ -16,7 +16,7 @@ namespace event_registrator.Models
         public string Title { get; set; }
         [Column(TypeName = "nvarchar(1000)")]
         public string Description { get; set; }
-        [Column(TypeName = "nvarchar(100)")]
+        [Column(TypeName = "nvarchar(250)")]
         public string imagePath { get; set; }
         [Required]
         public DateTime dateStart { get; set; }
