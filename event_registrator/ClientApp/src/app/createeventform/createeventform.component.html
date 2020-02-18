@@ -9,7 +9,7 @@
                     [formGroup] = "createEventForm" 
                     (ngSubmit)="onSubmit()"
                     novalidate>
-                        <div class="form-group">
+                        <div class="form-group" id="titleDiv">
                             <label for="title">Title</label>
                             <textarea 
                                 cols="60"
@@ -20,7 +20,7 @@
                                 formControlName = "title"
                                 ></textarea>
                         </div>
-                        <div class="form-group">
+                        <div class="form-group" id="descriptionDiv">
                             <label for="description">Description</label>
                             <textarea 
                                 cols="60"
@@ -31,7 +31,7 @@
                                 formControlName= "description"
                                 ></textarea>
                         </div>
-                        <div class="form-group">
+                        <div class="form-group" id="imagePathDiv">
                             <label for="imagePath">Image (bmp, jpg, png, gif)</label>
                             <input
                                type="file" 
@@ -41,11 +41,11 @@
                                 formControlName= "imagePath"
                                 (change)='onFileSelected($event)'>
                         </div>
-                        <div id="dateGroup">
+                        <div id="dateGroup" id="dateDiv">
                             <div class="form-group" id="startdatediv">
                                 <label for="dateStart">Date start</label>
                                 <input
-                                   type="date" 
+                                   type="datetime-local" 
                                    id="dateStart"
                                    class="form-control"
                                    name="dateStart" 
@@ -57,7 +57,7 @@
                             <div class="form-group" id="finishdatediv">
                                 <label for="dateFinish">Date finish</label>
                                 <input
-                                   type="date" 
+                                   type="datetime-local" 
                                    id="dateFinish"
                                    class="form-control"
                                    name="dateFinish" 
@@ -67,7 +67,7 @@
                                    max="2100-12-31">
                             </div>
                         </div>
-                        <div class="text-center">
+                        <div class="text-center" id="submitbuttonDiv" >
                             <button 
                                id="btncreatesubm" 
                                type="submit" 
