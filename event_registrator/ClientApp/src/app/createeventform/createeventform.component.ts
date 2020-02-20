@@ -50,7 +50,7 @@ export class CreateeventformComponent implements OnInit {
   onFileSelected(event){
    //    console.log(event);
        this.selectedfile = <File>event.target.files[0];
-   //    console.log(this.selectedfile);
+       console.log(this.selectedfile);
      }
 
   onSubmit(){

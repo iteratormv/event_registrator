@@ -1,9 +1,22 @@
 <h1>Events</h1>
 <p>Сайт находится в стадии разаработки</p>
-<button (click)="onEventCreate()" *ngIf='isLogin' >Создать событие</button>
 <ul>
-  <li *ngFor="let item of events">{{item.title}}</li>
+  <li *ngFor="let item of events" class="col-sm-12 col-md-5 col-lg-3 col-xl-3">
+    <div id="eventDiv" >
+      <div >
+        <img src="{{item.imagePath}}" alt="img" class="img-fluid"/>
+      </div>
+      <div>
+        {{item.dateStart | date:'dd MMMM yyyy h:mm'}}
+      </div>
+      <div>
+        {{item.title}}
+      </div>
+    </div>
+  </li>
 </ul>
+<button (click)="onEventCreate()" *ngIf='isLogin'>Создать событие</button>
+
 <!--<ul>
   <li><a href='https://get.asp.net/'>ASP.NET Core</a> and <a href='https://msdn.microsoft.com/en-us/library/67ef8sbd.aspx'>C#</a> for cross-platform server-side code</li>
   <li><a href='https://angular.io/'>Angular</a> and <a href='http://www.typescriptlang.org/'>TypeScript</a> for client-side code</li>

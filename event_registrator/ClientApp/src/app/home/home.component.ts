@@ -6,6 +6,7 @@ import { myEvent, EventserviceService } from '../services/eventservice.service';
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
+  styleUrls: ['./home.component.css']
 })
 export class HomeComponent implements OnChanges {
 
@@ -27,13 +28,14 @@ export class HomeComponent implements OnChanges {
     Eventservice.initEvents();
     setTimeout(()=>{
       this.events = Eventservice.getEvents();
+      
       console.log(this.events)
-    }, 100);
+    }, 1500);
     setTimeout(()=>{
       var rcus = this.Userservice.getRoleCurrentConfirmedUser();
       if(rcus != "guest") this.isLogin = true;
- //     console.log(rcus);
-    }, 100);
+      console.log(rcus);
+    }, 1000);
   }
 
   onEventCreate(){

@@ -10,11 +10,12 @@ export class EventserviceService {
   events:any;
 
   constructor(private http: HttpClient, @Inject('BASE_URL') baseUrl: string) { 
-    var burl = getBaseUrl();
-    var q = this.http.get(burl + 'api/events').subscribe((data) =>{
-      this.events=data;
-      console.log(this.events);
-     });
+    // var burl = getBaseUrl();
+    // var q = this.http.get(burl + 'api/events').subscribe((data) =>{
+    //   this.events=data;
+    //   console.log(this.events);
+    //  });
+    this.initEvents();
   }
 
   getEvents():Array<myEvent>{
@@ -28,6 +29,10 @@ export class EventserviceService {
     var burl = getBaseUrl();
     var q = this.http.get(burl + 'api/events').subscribe((data) =>{
       this.events=data;
+      // this.events.forEach(element => {
+      //   var temp = element.dateStart.;
+      //   element.dateStart = 
+      // });
       console.log(this.events);
      });
   }
