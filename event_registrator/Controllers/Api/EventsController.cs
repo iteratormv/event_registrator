@@ -25,8 +25,7 @@ namespace event_registrator.Controllers.Api
         [HttpGet]
         public async Task<ActionResult<IEnumerable<Event>>> Getevents()
         {
-            var e = _context.events.ToListAsync();
-            return await e;
+            return await _context.events.ToListAsync();
         }
 
         // GET: api/Events/5
@@ -81,10 +80,6 @@ namespace event_registrator.Controllers.Api
         [HttpPost]
         public async Task<ActionResult<Event>> PostEvent(Event @event)
         {
-            var tempPath = @event.imagePath;
-            var arrayTempPath = tempPath.Split('\\');
-            var correctpath = arrayTempPath[8] + @"\" + arrayTempPath[9];
-            @event.imagePath = correctpath;
             _context.events.Add(@event);
             await _context.SaveChangesAsync();
 

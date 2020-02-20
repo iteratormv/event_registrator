@@ -90,12 +90,17 @@ setTimeout(()=>{
   sendInformationToDatabase(){
     var burl = getBaseUrl();
     var uId = this.us.currentConfirmedUserObject.id;
+    var tempIpa = this.uploudEventPath;
+    console.log(tempIpa);
+    var ipas = tempIpa.split('\\');
+    var ipa = ipas[8] + "\\" + ipas[9];
+    console.log(ipa);
     var e = this.createEvent({
       id:0,
       title:this.createEventForm.controls.title.value, 
       description:this.createEventForm.controls.description.value, 
-      imagePath:this.uploudEventPath,
-      dateStart:this.createEventForm.controls.dateFinish.value,
+      imagePath:ipa,
+      dateStart:this.createEventForm.controls.dateStart.value,
       dateFinish:this.createEventForm.controls.dateFinish.value,
       ownerId:uId
       })

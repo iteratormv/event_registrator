@@ -8,6 +8,7 @@ import { getBaseUrl } from 'src/main';
 export class EventserviceService {
 
   events:any;
+  selectedEvent:myEvent = null;
 
   constructor(private http: HttpClient, @Inject('BASE_URL') baseUrl: string) { 
     // var burl = getBaseUrl();
@@ -35,6 +36,13 @@ export class EventserviceService {
       // });
       console.log(this.events);
      });
+  }
+
+  initSelectedEvent(eventId:number){
+    var ev = this.getEvents();
+    ev.forEach(element => {
+      if(element.id == eventId) this.selectedEvent =  element;
+    });
   }
 }
 export interface myEvent{

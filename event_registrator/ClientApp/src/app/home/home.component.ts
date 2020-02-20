@@ -12,6 +12,7 @@ export class HomeComponent implements OnChanges {
 
   isLogin:boolean;
   events:Array<myEvent>;
+  es:EventserviceService;
   
   ngOnChanges(changes: import("@angular/core").SimpleChanges): void {
  //   console.log("homeonchanges");
@@ -25,7 +26,8 @@ export class HomeComponent implements OnChanges {
     private router: Router, 
     private Eventservice:EventserviceService){
     console.log("constructor home");
-    Eventservice.initEvents();
+    this.es = Eventservice;
+    this.es.initEvents();
     setTimeout(()=>{
       this.events = Eventservice.getEvents();
       
@@ -41,6 +43,14 @@ export class HomeComponent implements OnChanges {
   onEventCreate(){
 //    alert("inent create");
     this.router.navigate(['createeventform']);
+  }
+
+  onClickElement(element:number){
+//    alert('element click ' + element);
+  this.es.initSelectedEvent(element);
+  setTimeout(()=>{
+    this.router.navigate(['eventdetail']);
+  });
   }
 
 

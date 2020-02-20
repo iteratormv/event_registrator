@@ -15,6 +15,7 @@ import { LoginformComponent } from './loginform/loginform.component';
 import { AdministrationComponent } from './administration/administration.component';
 import { CabinetComponent } from './cabinet/cabinet.component';
 import { CreateeventformComponent } from './createeventform/createeventform.component';
+import { EventDetailComponent } from './createeventform/event-detail/event-detail.component';
 
 @NgModule({
   declarations: [
@@ -28,7 +29,8 @@ import { CreateeventformComponent } from './createeventform/createeventform.comp
     LoginformComponent,
     AdministrationComponent,
     CabinetComponent,
-    CreateeventformComponent
+    CreateeventformComponent,
+    EventDetailComponent
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),
@@ -45,6 +47,7 @@ import { CreateeventformComponent } from './createeventform/createeventform.comp
       { path: 'administration', component: AdministrationComponent },
       { path: 'cabinet', component: CabinetComponent },
       { path: 'createeventform', component: CreateeventformComponent },
+      { path: 'eventdetail', component: EventDetailComponent },
     ])
   ],
   providers: [],
