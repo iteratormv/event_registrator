@@ -9,6 +9,7 @@ export class EventserviceService {
 
   events:any;
   selectedEvent:myEvent = null;
+  
 
   constructor(private http: HttpClient, @Inject('BASE_URL') baseUrl: string) { 
     // var burl = getBaseUrl();

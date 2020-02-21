@@ -1,0 +1,20 @@
+#divform{
+    border: solid 2px green;
+    border-radius: 10px;
+    padding-top: 30px;
+    padding-left: 20px;
+    padding-right: 20px;
+    padding-bottom: 20px;
+    }
+    
+    #btnregsubm{
+        border: solid 1px lightgray;
+    }
+    
+    #divform.ng-touched.ng-invalid {border:solid red 2px;}
+    #divform.ng-touched.ng-valid {border:solid green 2px;}
+    
+    input.ng-touched.ng-invalid {border:solid red 2px;}
+    input.ng-touched.ng-valid {border:solid green 2px;}
+    
+    #btnregsubm{border:solid green 2px;}

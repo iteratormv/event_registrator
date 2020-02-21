@@ -15,9 +15,10 @@ export class HomeComponent implements OnChanges {
   es:EventserviceService;
   
   ngOnChanges(changes: import("@angular/core").SimpleChanges): void {
- //   console.log("homeonchanges");
-  //  console.log(this.isLogin);
+    console.log("homeonchanges");
+    console.log(this.isLogin);
     var rcus = this.Userservice.getRoleCurrentConfirmedUser();
+    console.log(rcus);
     if(rcus != "guest") this.isLogin = true;
   }
 
@@ -26,8 +27,10 @@ export class HomeComponent implements OnChanges {
     private router: Router, 
     private Eventservice:EventserviceService){
     console.log("constructor home");
+    console.log(this.isLogin);
     this.es = Eventservice;
     this.es.initEvents();
+    this.Userservice.initUsers();
     setTimeout(()=>{
       this.events = Eventservice.getEvents();
       
@@ -36,6 +39,7 @@ export class HomeComponent implements OnChanges {
     setTimeout(()=>{
       var rcus = this.Userservice.getRoleCurrentConfirmedUser();
       if(rcus != "guest") this.isLogin = true;
+      console.log("current user")
       console.log(rcus);
     }, 1000);
   }

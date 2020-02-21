@@ -1,4 +1,32 @@
 <p>event-detail works!</p>
-<div>
-    {{event.id}}
+<div id="eventheaderdiv">
+    <div id="imagediv" class="col-8 a1">
+        <div >
+            <img src="{{event.imagePath}}" alt="img" class="img-fluid"/>
+          </div>
+    </div>
+    <div class="col-4 a2">
+        <div>
+          {{event.dateStart | date:'dd MMMM'}}
+        </div>
+        <div>
+          {{event.title}}
+        </div>
+        <div>
+            <button (click)="onRegistrateClick()">Зарегистрироваться</button>
+          </div>
+    </div>
+</div>
+<div id="eventdescriptiondiv">
+    <div class="col-8 a1">
+        {{event.description}}
+    </div>
+    <div class="col-4 a2">
+        <div>
+            {{event.dateStart | date:'dd MMMM yyyy h:mm'}}
+        </div>
+        <div>
+            {{event.dateFinish | date:'dd MMMM yyyy h:mm'}}
+        </div>
+    </div>
 </div>

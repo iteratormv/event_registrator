@@ -4,6 +4,7 @@ import { Inject } from '@angular/core';
 import { getBaseUrl } from 'src/main';
 import { Observable } from 'rxjs/internal/Observable';
 import { map } from 'rxjs/operators';
+import { CompileShallowModuleMetadata } from '@angular/compiler';
 
 @Injectable({
   providedIn: 'root'
@@ -39,8 +40,14 @@ export class UsersService implements OnInit, OnChanges   {
     this.currentUser = "guest";
     this.currentConfirmedUser = "guest";
     this.roleCurrentConfermedUser = "guest";
-  //  console.log("end constructor service");
-   // console.log(this.currentConfirmedUserObject);
+    console.log("end constructor service");
+ //   console.log(this.currentConfirmedUserObject);
+   var burl = getBaseUrl();
+   http.get(burl + 'api/users/2').subscribe(res=>{
+     var temp:any = res;
+     this.currentConfirmedUserObject = temp;
+     console.log(this.currentConfirmedUserObject);
+   });
    }
    public getRoleCurrentConfirmedUser():string{
      return this.roleCurrentConfermedUser;
@@ -48,7 +55,8 @@ export class UsersService implements OnInit, OnChanges   {
    public getCurrentConfermedUser():string{
     // console.log("service getcurrent confermeduser")
     this.getUserObjectByName(this.currentConfirmedUser);
-   //  console.log(this.currentConfirmedUserObject);
+    console.log(this.currentConfirmedUserObject);
+     console.log(this.currentConfirmedUserObject);
      if(this.currentConfirmedUserObject!=null) {
       this.initRoleByUser(this.currentConfirmedUserObject);
      }
@@ -150,6 +158,14 @@ export class UsersService implements OnInit, OnChanges   {
   // console.log(q);
  //  console.log(qr);
   // console.log(quir);
+if(this.currentUser == "guest"){
+  this.http.get(burl + 'api/users/2').subscribe(res=>{
+    var temp:any = res;
+    this.currentConfirmedUserObject = temp;
+    console.log(this.currentConfirmedUserObject);
+  });
+}
+
 
      if(q) return true;
      else return false;
@@ -202,6 +218,20 @@ export class UsersService implements OnInit, OnChanges   {
   //  console.log("setguest")
   //  console.log(this.currentConfirmedUserObject);
   //  this.initRoleByUser(this.currentConfirmedUserObject);
+  }
+  addUser(user:User){
+    var burl = getBaseUrl();
+    this.http.post(burl + 'api/users', user).subscribe((data)=>{
+      console.log(data);
+      this.initUsers();
+    });  
+  }
+  addUserInRole(uir:UserInRole){
+    var burl = getBaseUrl();
+    this.http.post(burl + 'api/userinroles', uir).subscribe((data)=>{
+      console.log(data);
+      this.initUsers();
+    })
   }
 }
 export interface booleanReturn{

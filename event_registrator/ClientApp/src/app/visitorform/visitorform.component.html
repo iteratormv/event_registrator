@@ -1,0 +1,104 @@
+<p>visitorform works!</p>
+<section class="a">
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-sm-6 col-lg-4 a1"></div>
+        <div class="col-sm-6 col-lg-4 a2">
+            <div id="divform" >
+                <form 
+                [formGroup] = "visitorForm" 
+                      (ngSubmit)="onSubmit()"
+                      novalidate
+                      >
+                      <div class="form-group">
+                        <label for="userFirstName">Firstname</label>
+                        <input 
+                                id="userFirstName" 
+                                name="userFirstName" 
+                                type="text" 
+                                class="form-control"
+                                formControlName = "userFirstName"
+                                placeholder="Enter firstname">
+                                <div *ngIf="visitorForm.get('userFirstName').hasError('required') 
+                                           && visitorForm.get('userFirstName').touched"
+                                      class="alert alert-danger" >Обязательное поле</div>
+                    </div>
+                    <div class="form-group">
+                      <label for="userSurName">Surname</label>
+                      <input 
+                              id="userSurName" 
+                              name="userSurName" 
+                              type="text" 
+                              class="form-control"
+                              formControlName = "userSurName"
+                              placeholder="Enter surname">
+                              <div *ngIf="visitorForm.get('userSurName').hasError('required') 
+                                         && visitorForm.get('userSurName').touched"
+                                    class="alert alert-danger" >Обязательное поле</div>
+                  </div>
+                        <div class="form-group">
+                            <label for="userEmail">E-Mail</label>
+                            <input 
+ 
+                                    type="email"
+                                    class="form-control"
+                                    formControlName = "userEmail"
+                                    placeholder="Enter Email">
+                                    <div *ngIf="visitorForm.get('userEmail').hasError('required') 
+                                                && visitorForm.get('userEmail').touched"
+                                          class="alert alert-danger" >Обязательное поле</div>
+                                    <div *ngIf="visitorForm.get('userEmail').hasError('email') 
+                                                && visitorForm.get('userEmail').touched"
+                                          class="alert alert-danger" >Не соответствие формату email</div>
+                                    <div *ngIf="visitorForm.get('userEmail').hasError('emailAddedValidator') 
+                                                && visitorForm.get('userEmail').touched"
+                                          class="alert alert-danger" >Такой email уже зарегистрирован</div>
+                        </div>
+                        <div class="form-group">
+                            <label for="userPassword">Password</label>
+                            <input 
+                                    id="userPassword" 
+                                    name="userPassword" 
+                                    type="password" 
+                                    class="form-control"
+                                    formControlName = "userPassword"
+                                    placeholder="Enter password">
+                                    <div *ngIf="visitorForm.get('userPassword').hasError('required') 
+                                               && visitorForm.get('userPassword').touched"
+                                          class="alert alert-danger" >Обязательное поле</div>
+                        </div>
+                        <div class="form-group">
+                            <label for="userPassword">Confirm password</label>
+                            <input 
+                                    id="confirmUserPassword" 
+                                    name="confirmUserPassword" 
+                                    type="password" 
+                                    class="form-control"
+                                    formControlName = "confirmUserPassword"
+                                    placeholder="Confirm password"
+                                    >
+                                    <div *ngIf="visitorForm.get('confirmUserPassword').hasError('required') 
+                                               && visitorForm.get('confirmUserPassword').touched"
+                                         class="alert alert-danger" >Обязательное поле</div>
+                                    <div *ngIf="visitorForm.get('confirmUserPassword').hasError('confirmPasswordValidator') 
+                                                && visitorForm.get('confirmUserPassword').touched"
+                                         class="alert alert-danger" >Пароли не совпадают</div>
+                        </div>
+                        <div class="text-center">
+                            <button
+                                id="btnregsubm"
+                                type="submit"
+                                [disabled]="!visitorForm.valid"
+                                class="btn btn-default"
+                            >Отправить</button>
+                        </div>
+                </form>
+        </div>
+        </div>
+        <div class="clearfix visible-sm-block visible-md-block"></div>
+        <div class="col-sm-6 col-lg-4 a3"></div>
+        <div class="clearfix visible-lg-block"></div>
+
+      </div>
+    </div>
+  </section>
